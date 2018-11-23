@@ -6,6 +6,7 @@ driver = Selenium::WebDriver.for:chrome
 
 Given("open the website") do
     driver.navigate.to "https://phptravels.com/demo/"
+    driver.manage.window.maximize
 end
 
 Then("user click on main menu") do
