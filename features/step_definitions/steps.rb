@@ -3,12 +3,17 @@ require 'rubygems'
 require 'rspec'
 # require_relative 'main_menu'
 
-caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => [ "--disable-web-security" ]})
+# caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => [ "--disable-web-security" ]})
+options = Selenium::WebDriver::Chrome::Options.new
+options.add_argument('--disable-notifications')
+options.add_argument('--disable-popup-blocking')
+driver = Selenium::WebDriver.for :chrome, options: options
 
-driver = Selenium::WebDriver.for:chrome
 Given("open the website") do
     driver.navigate.to "https://phptravels.com/demo/"
     driver.manage.window.maximize
+    driver.find_element(:xpath, '//*[@id="PopupSignupForm_0"]/div[2]').displayed?
+    driver.find_element(:xpath, '//*[@id="PopupSignupForm_0"]/div[2]/div[1]').click
 end
 
 Then("user click on main menu") do
