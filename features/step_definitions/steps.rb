@@ -1,7 +1,6 @@
 require 'selenium-webdriver'
 require 'rubygems'
 require 'rspec'
-# require_relative 'main_menu'
 
 # caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => [ "--disable-web-security" ]})
 options = Selenium::WebDriver::Chrome::Options.new
@@ -12,8 +11,8 @@ driver = Selenium::WebDriver.for :chrome, options: options
 Given("open the website") do
     driver.navigate.to "https://phptravels.com/demo/"
     driver.manage.window.maximize
-    driver.find_element(:xpath, '//*[@id="PopupSignupForm_0"]/div[2]').displayed?
-    driver.find_element(:xpath, '//*[@id="PopupSignupForm_0"]/div[2]/div[1]').click
+    # driver.find_element(:xpath, '//*[@id="PopupSignupForm_0"]/div[2]').displayed?
+    # driver.find_element(:xpath, '//*[@id="PopupSignupForm_0"]/div[2]/div[1]').click
 end
 
 Then("user click on main menu") do
@@ -30,4 +29,12 @@ end
 
 Then("user closing the browser") do
     driver.quit
+end
+
+When("user choose home-page frontend") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("user should on home-page frontend") do
+  pending # Write code here that turns the phrase above into concrete actions
 end
