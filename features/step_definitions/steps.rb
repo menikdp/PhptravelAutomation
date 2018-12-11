@@ -1,8 +1,9 @@
-require_relative '../support/env'
+# require_relative '../support/env'
 
 Given("open the website") do
   @driver.manage.window.maximize
   @driver.navigate.to "https://phptravels.com/demo/"
+  sleep(@time)
   
   #popup handling
   if @driver.find_elements(:id,'onesignal-popover-cancel-button').size > 0
@@ -12,11 +13,11 @@ Given("open the website") do
   # element = @wait.until {@driver.find_element(:id, 'onesignal-popover-cancel-button') }
   # element.click
 
-  # if @driver.find_elements(:class, 'modalContent').size > 0
-  #   @driver.find_element(:class, 'mc-closeModal').click
-  # end
-  popout = @wait.until {@driver.find_element(:class, 'mc-closeModal')}
-  popout.click
+  if @driver.find_elements(:class, 'modalContent').size > 0
+    @driver.find_element(:class, 'mc-closeModal').click
+  end
+  # popout = @wait.until {@driver.find_element(:class, 'mc-closeModal')}
+  # popout.click
   sleep(@time)
 end
 
@@ -176,3 +177,18 @@ Then("user click on all hyperlink") do
   @driver.find_element(:link, 'Forums').click
 end
 
+Then("user click on live chat") do
+  @driver.switch_to.frame "chat-widget"
+  sleep(@time)
+  if @driver.find_elements(:xpath, '//*[@id="widget-global-i0daqzm2mc"]/div/div/div/div[1]/div[2]/div').size > 0
+    @driver.find_element(:xpath, '//*[@id="widget-global-i0daqzm2mc"]/div/div/div/div[1]/div[2]/div').click
+  end
+end
+
+Then("user click on messenger") do
+  @driver.switch_to.frame "wh-widget-send-button-iframe"
+  sleep(@time)
+  if @driver.find_elements(:class, 'wh-widget-button wh-widget-button-activator').size > 0
+    @driver.find_element(:class, 'wh-widget-button wh-widget-button-activator').click
+  end
+end
