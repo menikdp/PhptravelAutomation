@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<ns2:test-suite xmlns="" xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1544552112709" stop="1544552128085">
+  <name>Php Travels</name>
+  <title>Php Travels</title>
+  <test-cases>
+    <test-case start="1544552113438" stop="1544552128084" status="failed">
+      <name>MainPage</name>
+      <title>MainPage</title>
+      <failure>
+        <message>no such frame
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609551 (5d576e9a44fe4c5b6a07e568f1ebc753f1214634),platform=Linux 4.15.0-39-generic x86_64)</message>
+        <stack-trace>./features/step_definitions/steps.rb:181:in `"user click on live chat"'&#xD;
+features/Phptravels.feature:9:in `Then user click on live chat'</stack-trace>
+      </failure>
+      <steps>
+        <step start="1544552128056" stop="1544552128056" status="passed">
+          <name>Given open the website</name>
+          <title>Given open the website</title>
+          <attachments/>
+        </step>
+        <step start="1544552128056" stop="1544552128084" status="failed">
+          <name>Then user click on live chat</name>
+          <title>Then user click on live chat</title>
+          <attachments/>
+        </step>
+      </steps>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="47167588836800"/>
+        <label name="host" value="menik"/>
+        <label name="feature" value="Php Travels"/>
+        <label name="story" value="MainPage"/>
+      </labels>
+      <parameters/>
+    </test-case>
+  </test-cases>
+  <labels>
+    <label name="severity" value="normal"/>
+    <label name="thread" value="47167588836800"/>
+    <label name="host" value="menik"/>
+  </labels>
+</ns2:test-suite>

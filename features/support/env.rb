@@ -4,9 +4,8 @@ require 'rspec/expectations'
 
 Before do
   @driver = Selenium::WebDriver.for:chrome
-
   @wait = Selenium::WebDriver::Wait.new(:timeout => 15)
-  @time = 3
+  @time = 1
 end
 
 # After do

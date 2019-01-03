@@ -1,8 +1,7 @@
-# require_relative '../support/env'
-
 Given("open the website") do
   @driver.manage.window.maximize
-  @driver.navigate.to "https://phptravels.com/demo/"
+  # @driver.navigate.to "https://phptravels.com/demo/"
+  @driver.navigate.to "https://google.com"
   sleep(@time)
   
   #popup handling
@@ -177,18 +176,40 @@ Then("user click on all hyperlink") do
   @driver.find_element(:link, 'Forums').click
 end
 
-Then("user click on live chat") do
-  @driver.switch_to.frame "chat-widget"
+Then("user click on messenger") do
+  @driver.switch_to.frame('wh-widget-send-button-iframe')
+  #click on wa button
+  @driver.action.move_to(@driver.find_element(:id, 'wh-widget-send-button-wrapper-list')).perform
   sleep(@time)
-  if @driver.find_elements(:xpath, '//*[@id="widget-global-i0daqzm2mc"]/div/div/div/div[1]/div[2]/div').size > 0
-    @driver.find_element(:xpath, '//*[@id="widget-global-i0daqzm2mc"]/div/div/div/div[1]/div[2]/div').click
-  end
+  @driver.find_element(:xpath, '//*[@id="wh-widget-send-button-wrapper-list"]/a[2]/div[1]').click
+  sleep(@time)
+  @driver.action.key_down(:ctrl).send_keys('w')
+
+  #click on fb button
+  @driver.find_element(:xpath, '//*[@id="wh-widget-send-button-wrapper-list"]/a[1]/div[1]').click
+  sleep(@time)
+
+  @driver.switch_to.default_content
 end
 
-Then("user click on messenger") do
-  @driver.switch_to.frame "wh-widget-send-button-iframe"
+Then("user click on live chat") do
+  @driver.switch_to.frame("chat-widget")
   sleep(@time)
-  if @driver.find_elements(:class, 'wh-widget-button wh-widget-button-activator').size > 0
-    @driver.find_element(:class, 'wh-widget-button wh-widget-button-activator').click
-  end
+  @driver.find_element(:id, 'Page-1').click
+  sleep(@time)
+  @driver.find_element(:name, 'name').send_keys('hahaha')
+  @driver.find_element(:name, 'email').send_keys('hahahaha@example.com')
+  @driver.find_element(:xpath, '//*[@id="widget-global-ytaweg5ivm"]/div/div/div/div/div[3]/div/div/div/form/div[4]/button').click #click button start chat
+  sleep(@time)
+  @wait.until { /Hello. How may I help you?/.match(@driver.page_source)}
+  @driver.find_element(:xpath, '//*[@id="widget-global-5clyqepgc6f"]/div/div/div/div/div[5]/div/textarea').send_keys('halo kak')
+  @driver.find_element(:id, 'send').click
+  sleep(5)
+end
+
+
+Then("search for {string}") do |string|
+  @driver.find_element(:name, 'q').click
+  @driver.find_element(:name, 'q').send_keys(string)
+  @driver.find_element(:name, 'q').submit
 end
